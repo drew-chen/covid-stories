@@ -1,8 +1,38 @@
 <template>
   <div>
+    <nuxt-link
+      v-for="navItem in navItems"
+      :key="navItem.route"
+      :to="navItem.route"
+    >
+      <span>
+        {{ navItem.label }}
+      </span>
+    </nuxt-link>
     <Nuxt />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data () {
+    return {
+      // Ordered
+      navItems: [
+        {
+          label: 'Covid Stories',
+          route: '/'
+        },
+        {
+          label: 'About',
+          route: '/About'
+        }
+      ]
+    }
+  }
+})
+</script>
 
 <style>
 html {
