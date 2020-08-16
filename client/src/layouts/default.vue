@@ -28,7 +28,7 @@ export default Vue.extend({
         },
         {
           label: 'About',
-          route: '/About'
+          route: '/about'
         }
       ] as NavItems
     }
