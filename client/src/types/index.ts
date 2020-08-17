@@ -3,11 +3,13 @@ interface NavItem {
   readonly route: string
 }
 
-export interface NavItems extends Array<NavItem> {}
+export interface NavItemsModel extends Array<NavItem> {}
 
-export interface Post {
+export interface PostModel {
   userId: Number,
   id: Number,
   title: string,
   body: string
 }
+
+export interface PostsModel extends Array<PostModel> {}

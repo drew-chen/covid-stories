@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { NavItems } from '../types'
+import { NavItemsModel } from '../types'
 
 export default Vue.extend({
   data () {
@@ -30,7 +30,7 @@ export default Vue.extend({
           label: 'About',
           route: '/about'
         }
-      ] as NavItems
+      ] as NavItemsModel
     }
   }
 })
