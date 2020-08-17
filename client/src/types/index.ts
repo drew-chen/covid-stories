@@ -4,3 +4,10 @@ interface NavItem {
 }
 
 export interface NavItems extends Array<NavItem> {}
+
+export interface Post {
+  userId: Number,
+  id: Number,
+  title: string,
+  body: string
+}
