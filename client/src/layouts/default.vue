@@ -15,10 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { createNamespacedHelpers } from 'vuex'
 import { NavItemsModel } from '../types'
-
-const { mapActions } = createNamespacedHelpers('posts')
 
 export default Vue.extend({
   data () {
@@ -35,14 +32,6 @@ export default Vue.extend({
         }
       ] as NavItemsModel
     }
-  },
-  created () {
-    this.loadPosts()
-  },
-  methods: {
-    ...mapActions([
-      'loadPosts'
-    ])
   }
 })
 </script>

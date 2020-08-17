@@ -29,8 +29,9 @@ export const mutations: MutationTree<PostsState> = {
 }
 
 export const actions: ActionTree<PostsState, RootState> = {
-  async loadPosts ({ commit }) {
+  async fetchPosts ({ commit }) {
     const { data } = await this.$axios.get<PostsModel>('/posts')
     commit('SET_POSTS', data)
+    commit('SET_LOADING', false)
   }
 }
