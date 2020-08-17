@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { NavItemsModel } from '../types'
+import { NavItemsModel } from '../types/views'
 
 export default Vue.extend({
   data () {

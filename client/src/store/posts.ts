@@ -1,5 +1,13 @@
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
-import { PostModel, PostsModel } from '../types'
+import {
+  SET_POSTS,
+  SET_LOADING
+} from '../types/store/mutations.type'
+import { FETCH_POSTS } from '../types/store/actions.type'
+import {
+  PostModel,
+  PostsModel
+} from '../types/store'
 import { RootState } from '~/store'
 
 export const state = () => ({
@@ -20,16 +28,16 @@ export const getters: GetterTree<PostsState, RootState> = {
 }
 
 export const mutations: MutationTree<PostsState> = {
-  SET_POSTS (state, posts) {
+  [SET_POSTS] (state, posts) {
     state.posts = posts
   },
-  SET_LOADING (state, loading) {
+  [SET_LOADING] (state, loading) {
     state.loading = loading
   }
 }
 
 export const actions: ActionTree<PostsState, RootState> = {
-  async fetchPosts ({ commit }) {
+  async [FETCH_POSTS] ({ commit }) {
     const { data } = await this.$axios.get<PostsModel>('/posts')
     commit('SET_POSTS', data)
     commit('SET_LOADING', false)
