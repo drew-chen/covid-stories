@@ -8,8 +8,8 @@ interface NavItem {
 export interface NavItemsModel extends Array<NavItem> {}
 
 export interface PostModel {
-  userId: Number,
-  id: Number,
+  userId: number,
+  id: number,
   title: string,
   body: string
 }

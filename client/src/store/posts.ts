@@ -1,29 +1,27 @@
+/** Defines store for posts. */
+
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import {
   SET_POSTS,
   SET_LOADING
 } from '../types/store/mutations.type'
 import { FETCH_POSTS } from '../types/store/actions.type'
-import {
-  PostModel,
-  PostsModel
-} from '../types/store'
-import { RootState } from '~/store'
+import { RootState, PostsState } from '../types/store'
+import { PostsModel } from '../types/models'
 
-export const state = () => ({
-  posts: [] as PostsModel,
-  currPost: {} as PostModel,
-  loading: true
+// Initial state.
+export const state = (): PostsState => ({
+  posts: [],
+  loading: true,
+  currPostId: undefined
 })
-
-export type PostsState = ReturnType<typeof state>
 
 export const getters: GetterTree<PostsState, RootState> = {
   posts ({ posts }) {
     return posts
   },
-  currPost ({ currPost }) {
-    return currPost
+  currPost ({ posts, currPostId }) {
+    return posts.find(post => post.id === currPostId)
   }
 }
 
@@ -39,7 +37,7 @@ export const mutations: MutationTree<PostsState> = {
 export const actions: ActionTree<PostsState, RootState> = {
   async [FETCH_POSTS] ({ commit }) {
     const { data } = await this.$axios.get<PostsModel>('/posts')
-    commit('SET_POSTS', data)
-    commit('SET_LOADING', false)
+    commit(SET_POSTS, data)
+    commit(SET_LOADING, false)
   }
 }

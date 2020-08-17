@@ -5,13 +5,12 @@
  */
 
 import { ActionTree } from 'vuex'
+import { RootState } from '../types/store'
 
-export const state = () => ({})
+export const state = (): RootState => ({})
 
 export const actions: ActionTree<RootState, RootState> = {
   async nuxtServerInit ({ dispatch }) {
     await dispatch('posts/fetchPosts')
   }
 }
-
-export type RootState = ReturnType<typeof state>
