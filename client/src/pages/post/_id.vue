@@ -16,6 +16,7 @@ export default Vue.extend({
   },
   created () {
     this[SET_CURR_POST_ID](this.$route.params.id)
+    console.log(this.currPost)
   },
   methods: {
     ...mapMutations([SET_CURR_POST_ID])

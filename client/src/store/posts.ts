@@ -1,5 +1,5 @@
 /** Defines store for posts. */
-
+import Vue from 'vue'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import {
   SET_POSTS,
@@ -21,14 +21,14 @@ export const getters: GetterTree<PostsState, RootState> = {
   posts ({ posts }) {
     return posts
   },
-  currPost ({ posts, currPostId }) {
-    return posts.find(post => post.id === currPostId)
+  currPost ({ posts }) {
+    return posts[0]
   }
 }
 
 export const mutations: MutationTree<PostsState> = {
   [SET_POSTS] (state, posts) {
-    state.posts = posts
+    Vue.set(state, 'posts', posts)
   },
   [SET_LOADING] (state, loading) {
     state.loading = loading
