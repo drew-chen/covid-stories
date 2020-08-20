@@ -3,7 +3,8 @@
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import {
   SET_POSTS,
-  SET_LOADING
+  SET_LOADING,
+  SET_CURR_POST_ID
 } from '../types/store/mutations.type'
 import { FETCH_POSTS } from '../types/store/actions.type'
 import { RootState, PostsState } from '../types/store'
@@ -31,6 +32,9 @@ export const mutations: MutationTree<PostsState> = {
   },
   [SET_LOADING] (state, loading) {
     state.loading = loading
+  },
+  [SET_CURR_POST_ID] (state, currPostId) {
+    state.currPostId = currPostId
   }
 }
 
