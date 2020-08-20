@@ -22,6 +22,12 @@ export default Vue.extend({
       type: Object as PropType<PostModel>,
       required: true
     }
+  },
+  computed: {
+    // Return type annotation is needed due to 'this' keyword.
+    body (): String {
+      return this.post.body.slice(0, this.bodyViewLimit)
+    }
   }
 })
 </script>
