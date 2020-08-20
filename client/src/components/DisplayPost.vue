@@ -2,7 +2,10 @@
   <div>
     <article>
       <h2>{{ post.title }}</h2>
-      <p>{{ post.body }}</p>
+      <p>{{ limitedBody }}</p>
+      <span v-if="bodyViewLimit >= 0">
+        ...
+      </span>
     </article>
     <section>Posted by {{ post.userId }}</section>
   </div>
@@ -13,7 +16,7 @@ import Vue, { PropType } from 'vue'
 import { PostModel } from '../types/models'
 export default Vue.extend({
   props: {
-    // If limit is -1, then there is no limit.
+    // If limit is < 0, then there is no limit.
     bodyViewLimit: {
       type: Number,
       default: -1
@@ -25,7 +28,10 @@ export default Vue.extend({
   },
   computed: {
     // Return type annotation is needed due to 'this' keyword.
-    body (): String {
+    limitedBody (): String {
+      if (this.bodyViewLimit < 0) {
+        return this.post.body
+      }
       return this.post.body.slice(0, this.bodyViewLimit)
     }
   }
