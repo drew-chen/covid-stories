@@ -1,28 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">
+      <h1 class="title fade-in">
         covid-stories
       </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
     </div>
   </div>
 </template>
@@ -90,5 +71,16 @@ export default Vue.extend({
 
 .links {
   padding-top: 15px;
+}
+
+.fade-in {
+  animation: 1s appear;
+  margin: auto;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
 }
 </style>
