@@ -7,8 +7,7 @@ import Vue from 'vue'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import {
   SET_POSTS,
-  SET_LOADING,
-  SET_CURR_POST_ID
+  SET_LOADING
 } from '../types/store/mutations.type'
 import { FETCH_POSTS } from '../types/store/actions.type'
 import { RootState, PostsState } from '../types/store'
@@ -17,8 +16,7 @@ import { PostsModel, PostModel } from '../types/models'
 // Initial state.
 export const state = (): PostsState => ({
   posts: [],
-  loading: true,
-  currPostId: undefined
+  loading: true
 })
 
 export const getters: GetterTree<PostsState, RootState> = {
@@ -40,9 +38,6 @@ export const mutations: MutationTree<PostsState> = {
   },
   [SET_LOADING] (state, loading: boolean) {
     state.loading = loading
-  },
-  [SET_CURR_POST_ID] (state, currPostId: number) {
-    state.currPostId = currPostId
   }
 }
 

@@ -6,6 +6,5 @@ export interface RootState {}
 
 export interface PostsState {
   posts: PostsModel,
-  loading: Boolean,
-  currPostId?: number
+  loading: Boolean
 }
