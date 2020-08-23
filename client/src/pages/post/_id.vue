@@ -14,24 +14,24 @@
 <script lang="ts">
 import Vue from 'vue'
 import { createNamespacedHelpers } from 'vuex'
-import { SET_CURR_POST_ID } from '../../types/store/mutations.type'
 import { PostModel } from '~/types/models'
-const { mapMutations, mapGetters } = createNamespacedHelpers('posts')
+const { mapGetters } = createNamespacedHelpers('posts')
 export default Vue.extend({
   computed: {
-    ...mapGetters(['currPost']),
+    ...mapGetters({
+      storeGetPostById: 'getPostById'
+    }),
     id (): number {
       return +this.$route.params.id
+    },
+    currPost (): PostModel {
+      return this.getPostById(this.id)
     }
   },
-  created () {
-    this.setCurrPost(this.id)
-  },
   methods: {
-    ...mapMutations([SET_CURR_POST_ID]),
-    setCurrPost (id: number): PostModel | undefined {
-      this[SET_CURR_POST_ID](id)
-      return this.$store.getters.currPost as PostModel
+    // Store wrapper to provide typing.
+    getPostById (id: number): PostModel {
+      return this.storeGetPostById(id)
     }
   }
 })

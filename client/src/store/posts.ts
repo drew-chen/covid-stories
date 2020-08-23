@@ -2,7 +2,7 @@
  * Defines store for posts. Note that these annotations, due to the limitations
  * of Vuex, are not used when the store is accessed in Vue components. Thus,
  * wrapper functions with their own annotations need to be used.
-*/
+ */
 import Vue from 'vue'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import {
@@ -25,15 +25,12 @@ export const getters: GetterTree<PostsState, RootState> = {
   posts ({ posts }) {
     return posts
   },
-  currPost ({ posts, currPostId }): PostModel | undefined {
-    if (currPostId === undefined) {
-      return undefined
-    }
-    const currPost = posts.find(p => p.id === currPostId)
+  getPostById: ({ posts }) => (id: number): PostModel | undefined => {
+    const post = posts.find(p => p.id === id)
     // if (currPost === undefined) {
-    //   throw new Error('Post not found.')
+    //   throw new Error('Post not found.') // TODO: error handling, redirect to 404
     // }
-    return currPost
+    return post
   }
 }
 
