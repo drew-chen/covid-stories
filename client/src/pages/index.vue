@@ -4,6 +4,12 @@
       <h1 class="title fade-in">
         covid-stories
       </h1>
+      <app-post
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
+        :body-view-limit="280"
+      />
     </div>
   </div>
 </template>
@@ -11,8 +17,19 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
+import { createNamespacedHelpers } from 'vuex'
+import { PostsModel } from '~/types/models'
+const { mapGetters } = createNamespacedHelpers('posts')
 
 export default Vue.extend({
+  computed: {
+    ...mapGetters({
+      storePosts: 'posts'
+    }),
+    posts (): PostsModel {
+      return this.storePosts
+    }
+  },
   head (): MetaInfo {
     return {
       title: 'Covid Stories',

@@ -1,7 +1,7 @@
 <template>
   <div>
     <article>
-      <h2>{{ post.title }}</h2>
+      <h1>{{ post.title }}</h1>
       <p>{{ limitedBody }}</p>
       <span v-if="bodyViewLimit >= 0">
         ...
