@@ -3,7 +3,7 @@
     <article>
       <h1>{{ post.title }}</h1>
       <p>{{ limitedBody }}</p>
-      <span v-if="bodyViewLimit >= 0">
+      <span v-if="displayEllipsis">
         ...
       </span>
     </article>
@@ -33,6 +33,9 @@ export default Vue.extend({
         return this.post.body
       }
       return this.post.body.slice(0, this.bodyViewLimit)
+    },
+    displayEllipsis (): boolean {
+      return this.bodyViewLimit >= 0 && this.bodyViewLimit < this.post.body.length
     }
   }
 })
@@ -40,10 +43,15 @@ export default Vue.extend({
 
 <style scoped>
 
+h1 {
+  font-size: 1.5rem;
+}
+
 .app-post {
   border-radius: 5px;
   border: 1px solid gray;
-  margin: 10px
+  margin: 10px;
+  padding: 10px;
 }
 
 </style>
