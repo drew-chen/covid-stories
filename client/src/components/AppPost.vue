@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-post">
     <article>
       <h1>{{ post.title }}</h1>
       <p>{{ limitedBody }}</p>
@@ -38,6 +38,12 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
+
+.app-post {
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin: 10px
+}
 
 </style>

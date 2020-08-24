@@ -4,12 +4,17 @@
       <h1 class="title fade-in">
         covid-stories
       </h1>
-      <app-post
+      <div
         v-for="post in posts"
         :key="post.id"
-        :post="post"
-        :body-view-limit="280"
-      />
+        class="clickable"
+        @click="navigateToFullPost(post.id)"
+      >
+        <app-post
+          :post="post"
+          :body-view-limit="280"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +35,11 @@ export default Vue.extend({
       return this.storePosts
     }
   },
+  methods: {
+    navigateToFullPost (postId: number) {
+      this.$router.push(`/post/${postId}`)
+    }
+  },
   head (): MetaInfo {
     return {
       title: 'Covid Stories',
@@ -45,7 +55,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
@@ -78,14 +88,6 @@ export default Vue.extend({
   letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
 .links {
   padding-top: 15px;
 }
@@ -99,5 +101,9 @@ export default Vue.extend({
   0% {
     opacity: 0;
   }
+}
+
+.clickable {
+  cursor: pointer;
 }
 </style>
