@@ -54,7 +54,8 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-purgecss'
   ],
   /*
   ** Axios module configuration
@@ -62,6 +63,9 @@ export default {
   */
   axios: {
     baseURL: 'https://jsonplaceholder.typicode.com'
+  },
+  purgeCSS: {
+    enabled: (process.env.NODE_ENV === 'production')
   },
   /*
   ** Build configuration
