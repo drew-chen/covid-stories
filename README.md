@@ -7,6 +7,18 @@ Purpose
 * Helps convince others be more serious about covid
 * It's more than just numbers and graphs, which are already prevalent
 
+Tech
+
+* Frontend
+  * [Vue.js](https://vuejs.org)
+  * [Nuxt.js](https://nuxtjs.org)
+  * [Vuex](https://vuex.vuejs.org)
+  * [TypeScript](https://www.typescriptlang.org)
+  * [Tailwind CSS](https://tailwindcss.com)
+* Backend
+  * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+  * [PostgreSQL](https://www.postgresql.org)
+
 Feature ideas
 
 * A live feed
