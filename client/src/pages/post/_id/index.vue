@@ -1,16 +1,16 @@
 <template>
   <div>
-    <display-post :post="post" />
+    <app-post :post="post" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 import { PostModel } from '../../../types/models'
-import DisplayPost from '../../../components/DisplayPost.vue'
+import AppPost from '../../../components/AppPost.vue'
 export default Vue.extend({
   components: {
-    DisplayPost
+    AppPost
   },
   props: {
     post: {
