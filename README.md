@@ -1,11 +1,13 @@
 # covid-stories
 
+(project in progress)
+
 Purpose
 
-* Display personal and tragic stories of covid 19
-* Give them a voice
-* Helps convince others be more serious about covid
-* It's more than just numbers and graphs, which are already prevalent
+* Share the personal stories behind Covid-19
+* Gives victims a voice
+* Conveys to skeptics the severity of Covid-19
+* Uniquely is more than just numbers and graphs, which are already prevalent
 
 Tech
 
