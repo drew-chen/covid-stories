@@ -24,11 +24,19 @@ class PostModel(db.Model):
     def __repr__(self):
         return f"<Post {self.id}>"
 
+    def __str__(self):
+        return self.__repr__()
+
 if __name__ == '__main__':
     app.run(debug=True)
 
-@app.route('/posts', methods=['POST', 'GET'])
+# Handles requests for multiple posts.
+@app.route('/posts', methods=['POST', 'GET', 'DELETE'])
 def handle_posts():
+    print(request.get_json(), flush=True)
+    # this is returned, if none of the if statements are true.
+    response = { "error": "Wrong request method." }
+
     if request.method == 'POST':
         if request.is_json:
             data = request.get_json()
@@ -39,9 +47,9 @@ def handle_posts():
             )
             db.session.add(new_post)
             db.session.commit()
-            return { "message": f"{new_post} has been created successfully." }
+            response = { "message": f"{new_post} has been created successfully." }
         else:
-            return { "error": "The request payload is not in JSON format." }
+            response = { "error": "The request payload is not in JSON format." }
 
     elif request.method == 'GET':
         query_results = PostModel.query.all()
@@ -51,5 +59,35 @@ def handle_posts():
             "body": post.body,
             "userId": post.userId
         } for post in query_results]
+        response = { "posts": posts }
+    return response
 
-        return { "posts": posts }
+# Handles requests for a single post.
+@app.route('/posts/<post_id>', methods=['GET', 'PUT', 'DELETE'])
+def handle_post(post_id):
+    post = PostModel.query.get_or_404(post_id)
+    response = { "error": "Wrong request method." }
+    if request.method == 'GET':
+        response = {
+            "id": post.id,
+            "title": post.title,
+            "body": post.body,
+            "userId": post.userId
+        }
+        response = {"message": "success", "post": response}
+
+    elif request.method == 'PUT':
+        data = request.get_json()
+        post.title = data['title']
+        post.body = data['body']
+        post.userId = data['userId']
+        db.session.add(post)
+        db.session.commit()
+        response =  {"message": f"Post {post} successfully updated"}
+
+    elif request.method == 'DELETE':
+        db.session.delete(post)
+        db.session.commit()
+        response = {"message": f"Post {post} successfully deleted."}
+    return response
+    
